@@ -1,4 +1,3 @@
-# dwarf-bridge
-This repository is for the Dwarf Bridge project
+# Dwarf Bridge [![Build Status](https://travis-ci.org/eowfenth/dwarf-bridge.svg?branch=master)](https://travis-ci.org/eowfenth/dwarf-bridge) ![Code Style](https://img.shields.io/badge/code%20style-airbnb-green.svg) ![License | MIT](https://img.shields.io/badge/license-MIT-blue.svg)
 
-Limited to version 1 of the project, without Gatsby.
+<div align="center">The front-end app for Dwarf Bridge</div>
