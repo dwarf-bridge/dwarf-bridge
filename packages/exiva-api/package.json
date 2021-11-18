@@ -18,7 +18,12 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "local": "DOTENV_CONFIG_PATH=./.env ts-node -P ./tsconfig.json -r dotenv/config",
+    "typeorm:local": "npm run local ./node_modules/typeorm/cli.js",
+    "migrate:run": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:run",
+    "db:migrate:local": "npm run typeorm:local migration:run",
+    "db:revert:local": "npm run typeorm:local migration:revert"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
@@ -26,6 +31,7 @@
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
     "@nestjs/typeorm": "^8.0.2",
+    "dotenv": "^10.0.0",
     "pg": "^8.7.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
