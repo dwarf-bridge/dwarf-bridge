@@ -83,6 +83,6 @@
     "test": "__tests__"
   },
   "files": [
-    "lib"
+    "source"
   ]
 }
