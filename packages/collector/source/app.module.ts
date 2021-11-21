@@ -2,8 +2,7 @@ import { Module } from '@nestjs/common';
 import { OnlineCheckService } from './online-check/online-check.service';
 import { BullModule } from '@nestjs/bull';
 import { RankingService } from './ranking/ranking.service';
-import { GameWorldsService } from './game-worlds/game-worlds.service';
-
+import * as GameWorld from './game-worlds/game-worlds.service';
 @Module({
   imports: [
     BullModule.forRoot({
@@ -22,6 +21,14 @@ import { GameWorldsService } from './game-worlds/game-worlds.service';
     }),
   ],
   controllers: [],
-  providers: [OnlineCheckService, RankingService, GameWorldsService],
+  providers: [
+    OnlineCheckService,
+    RankingService,
+    GameWorld.Consumer,
+    GameWorld.Collector,
+    GameWorld.Parser,
+    GameWorld.Processor,
+    GameWorld.Service,
+  ],
 })
 export class AppModule {}
