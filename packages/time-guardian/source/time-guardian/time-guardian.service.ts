@@ -22,7 +22,7 @@ export class TimeGuardianService {
     );
   }
 
-  @Cron(CronExpression.EVERY_MINUTE, { timeZone: 'America/Bahia' })
+  @Cron(CronExpression.EVERY_DAY_AT_9AM, { timeZone: 'America/Bahia' })
   async handle_game_worlds() {
     this.logger.log(`Emiting game_world checking`);
     await this.queue.add(
