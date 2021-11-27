@@ -1,8 +1,11 @@
 import { Module } from '@nestjs/common';
-import { OnlineCheckService } from './online-check/online-check.service';
 import { BullModule } from '@nestjs/bull';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { OnlineCheckService } from './game-worlds/online-check/online-check.service';
 import { RankingService } from './ranking/ranking.service';
-import * as GameWorld from './game-worlds/game-worlds.service';
+import { GameWorldsModule } from './game-worlds/game-worlds.module';
+import Database from './infrastructure/database';
+
 @Module({
   imports: [
     BullModule.forRoot({
@@ -19,16 +22,12 @@ import * as GameWorld from './game-worlds/game-worlds.service';
         duration: 450,
       },
     }),
+    TypeOrmModule.forRootAsync({
+      useFactory: Database.connectionOptions,
+    }),
+    GameWorldsModule,
   ],
   controllers: [],
-  providers: [
-    OnlineCheckService,
-    RankingService,
-    GameWorld.Consumer,
-    GameWorld.Collector,
-    GameWorld.Parser,
-    GameWorld.Processor,
-    GameWorld.Service,
-  ],
+  providers: [OnlineCheckService, RankingService],
 })
 export class AppModule {}
