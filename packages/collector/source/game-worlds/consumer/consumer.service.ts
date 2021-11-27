@@ -14,7 +14,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { GameWorld } from '../world.entity';
 import { ConfigService } from '@nestjs/config';
-// import { CreateWorldDTO } from '../world.dto';
 
 @QueueConsumer({
   name: 'execution_queue',
