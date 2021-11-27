@@ -20,7 +20,9 @@ import { Job as JobName, Queue } from '../../../../core/source/config';
   name: Queue.EXECUTION_QUEUE,
 })
 export class Consumer {
-  private readonly logger = new Logger(`Game Worlds:${Consumer.name}`);
+  private readonly logger = new Logger(
+    `game_worlds:${Consumer.name.toLocaleLowerCase()}`,
+  );
 
   constructor(
     private config: ConfigService,
@@ -32,10 +34,8 @@ export class Consumer {
   ) {}
 
   @Process(JobName.GAME_WORLD_CHECK)
-  async transcode(job: Job<unknown>) {
+  async process(job: Job<unknown>) {
     const schema = this.config.get('TYPEORM_SCHEMA');
-    this.logger.log(job.data);
-
     const response = await this.collector.collect();
     response.subscribe(async (response) => {
       const raw_content = this.processor
@@ -57,20 +57,16 @@ export class Consumer {
         }),
       ];
 
-      try {
-        await this.repository
-          .createQueryBuilder()
-          .insert()
-          .into(`${schema}.game_worlds`)
-          .values(worlds)
-          .orUpdate(
-            ['server_titles', 'server_conditions', 'creation_date'],
-            ['name'],
-          )
-          .execute();
-      } catch (err) {
-        this.logger.error(err);
-      }
+      await this.repository
+        .createQueryBuilder()
+        .insert()
+        .into(`${schema}.game_worlds`)
+        .values(worlds)
+        .orUpdate(
+          ['server_titles', 'server_conditions', 'creation_date'],
+          ['name'],
+        )
+        .execute();
     });
   }
 

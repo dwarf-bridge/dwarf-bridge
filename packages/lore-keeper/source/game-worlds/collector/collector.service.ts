@@ -11,7 +11,7 @@ export class Collector {
   constructor(private fetch: HttpService, private config: ConfigService) {}
   public async collect(): Promise<Observable<AxiosResponse<any, any>>> {
     try {
-      this.logger.log('req | /community/?subtopic=worlds');
+      this.logger.log(`game_worlds: ${Collector.name.toLocaleLowerCase()}`);
       return this.fetch.get(
         `${this.config.get('BASE_URL')}${this.config.get('GAME_WORLDS_URL')}`,
         {
