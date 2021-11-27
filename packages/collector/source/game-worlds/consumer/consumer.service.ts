@@ -14,12 +14,14 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { GameWorld } from '../world.entity';
 import { ConfigService } from '@nestjs/config';
+import { Job as JobName, Queue } from '../../config';
 
 @QueueConsumer({
-  name: 'execution_queue',
+  name: Queue.EXECUTION_QUEUE,
 })
 export class Consumer {
   private readonly logger = new Logger(`Game Worlds:${Consumer.name}`);
+
   constructor(
     private config: ConfigService,
     private collector: Collector,
@@ -29,7 +31,7 @@ export class Consumer {
     private readonly repository: Repository<GameWorld>,
   ) {}
 
-  @Process('GAME_WORLD_CHECK')
+  @Process(JobName.GAME_WORLD_CHECK)
   async transcode(job: Job<unknown>) {
     const schema = this.config.get('TYPEORM_SCHEMA');
     this.logger.log(job.data);
@@ -72,7 +74,7 @@ export class Consumer {
     });
   }
 
-  @OnQueueActive({ name: 'GAME_WORLD_CHECK' })
+  @OnQueueActive({ name: JobName.GAME_WORLD_CHECK })
   onActive(job: Job) {
     this.logger.log(
       `Processing job ${job.id} of type ${job.name} with data ${JSON.stringify(
@@ -81,12 +83,12 @@ export class Consumer {
     );
   }
 
-  @OnQueueError({ name: 'GAME_WORLD_CHECK' })
+  @OnQueueError({ name: JobName.GAME_WORLD_CHECK })
   onError(job: Job) {
     this.logger.error(job);
   }
 
-  @OnQueueCompleted({ name: 'GAME_WORLD_CHECK' })
+  @OnQueueCompleted({ name: JobName.GAME_WORLD_CHECK })
   onCompleted(job: Job) {
     this.logger.log(`Job ${job.id} of type ${job.name} was completed`);
   }
