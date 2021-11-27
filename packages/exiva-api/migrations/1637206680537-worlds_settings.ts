@@ -2,6 +2,16 @@ import { MigrationInterface, QueryRunner, Table, TableColumn } from 'typeorm';
 const configureTable = (table: Table): Table => {
   table.addColumn(
     new TableColumn({
+      name: 'id',
+      type: 'uuid',
+      isGenerated: true,
+      generationStrategy: 'uuid',
+      default: 'uuid_generate_v4()',
+    }),
+  );
+
+  table.addColumn(
+    new TableColumn({
       name: 'created_at',
       type: 'timestamp',
       default: 'now()',
@@ -19,6 +29,7 @@ const configureTable = (table: Table): Table => {
       name: 'deleted_at',
       type: 'timestamp',
       default: null,
+      isNullable: true,
     }),
   );
 
@@ -40,7 +51,7 @@ export class worldsSettings1637206680537 implements MigrationInterface {
         {
           name: 'creation_date',
           type: 'text',
-          isNullable: false,
+          isNullable: true,
           isUnique: false,
         },
         {
@@ -84,9 +95,14 @@ export class worldsSettings1637206680537 implements MigrationInterface {
           isNullable: true,
         },
         {
+          name: 'server_conditions',
+          type: 'text',
+          isArray: true,
+          isNullable: true,
+        },
+        {
           name: 'is_special_world',
           type: 'boolean',
-          isNullable: true,
         },
       ],
       schema: schema,
