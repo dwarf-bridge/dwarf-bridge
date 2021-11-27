@@ -1,13 +1,10 @@
+import cheerio from 'cheerio';
 import { Page } from '../../core.interface';
 import * as Raw from '../game-worlds-raw.interface';
 
 export class Processor {
   private page: Page;
   private content: Raw.WorldList | null = null;
-
-  constructor(page: Page) {
-    this.page = page;
-  }
 
   private process(): void {
     const world_list = {
@@ -43,8 +40,14 @@ export class Processor {
     return processed_worldlist;
   }
 
+  init(page: string) {
+    this.page = cheerio.load(page);
+    return this;
+  }
+
   handle() {
     this.process();
+    return this;
   }
 
   get_content(): Raw.WorldList {
