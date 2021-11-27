@@ -1,0 +1,30 @@
+{
+  "name": "core",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "Nícolas 'Eowfenth' Deçordi <eowfenth.services@gmail.com>",
+  "homepage": "https://github.com/dwarf-bridge/dwarf-bridge#readme",
+  "license": "GPL-3.0-or-later",
+  "main": "source/index.ts",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dwarf-bridge/dwarf-bridge.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/dwarf-bridge/dwarf-bridge/issues"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.10",
+    "typeorm": "^0.2.41"
+  }
+}
