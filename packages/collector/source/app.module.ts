@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { BullModule } from '@nestjs/bull';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { OnlineCheckService } from './game-worlds/online-check/online-check.service';
 import { RankingService } from './ranking/ranking.service';
 import { GameWorldsModule } from './game-worlds/game-worlds.module';
+import { OnlineCheckService } from './online-check/online-check.service';
 import Database from './infrastructure/database';
 
 @Module({
