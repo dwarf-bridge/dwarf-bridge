@@ -13,10 +13,6 @@ export class Parser {
   private raw_content: Raw.WorldList;
   private content: Parsed.WorldList | null = null;
 
-  construtor(raw_content: Raw.WorldList) {
-    this.raw_content = raw_content;
-  }
-
   private to_number(text: string) {
     return Number(this.strip(text));
   }
@@ -140,8 +136,14 @@ export class Parser {
     };
   }
 
-  handle(): void {
+  public init(raw_content: Raw.WorldList) {
+    this.raw_content = raw_content;
+    return this;
+  }
+
+  handle() {
     this.parse();
+    return this;
   }
 
   get_content(): Parsed.WorldList {
