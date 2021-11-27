@@ -12,7 +12,7 @@ import { Processor } from '../processor/processor.service';
 import { Parser } from '../parser/parser.service';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { GameWorld } from '../world.entity';
+import { GameWorld } from '../../../../core/source/world.entity';
 import { ConfigService } from '@nestjs/config';
 import { Job as JobName, Queue } from '../../config';
 

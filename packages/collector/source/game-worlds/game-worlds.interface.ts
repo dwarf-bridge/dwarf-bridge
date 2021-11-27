@@ -4,7 +4,7 @@ import {
   ServerCondition,
   ServerLocation,
   BaseRow,
-} from '../core.interface';
+} from '../../../core/source/core.interface';
 
 export interface GameWorldRow extends BaseRow {
   name: string;

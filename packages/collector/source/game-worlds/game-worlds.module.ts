@@ -6,7 +6,7 @@ import { Processor } from './processor/processor.service';
 import { Parser } from './parser/parser.service';
 import { HttpModule } from '@nestjs/axios';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { GameWorld } from './world.entity';
+import { GameWorld } from '../../../core/source/world.entity';
 
 @Module({
   imports: [

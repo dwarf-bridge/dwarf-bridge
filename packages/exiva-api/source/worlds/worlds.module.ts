@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { GameWorld } from './world.entity';
+import { GameWorld } from '../../../core/source/world.entity';
 import { WorldsController } from './worlds.controller';
 import { WorldsService } from './worlds.service';
 

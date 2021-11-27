@@ -6,7 +6,11 @@ import {
   UpdateDateColumn,
   DeleteDateColumn,
 } from 'typeorm';
-import { PvPType, ServerLocation, BattleEyeStatus } from '../core.interface';
+import {
+  PvPType,
+  ServerLocation,
+  BattleEyeStatus,
+} from './core.interface';
 
 @Entity('game_worlds')
 export class GameWorld {

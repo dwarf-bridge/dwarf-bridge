@@ -6,7 +6,7 @@ import {
   PvPType,
   ServerCondition,
   ServerLocation,
-} from '../../core.interface';
+} from '../../../../core/source/core.interface';
 
 @Injectable()
 export class Parser {

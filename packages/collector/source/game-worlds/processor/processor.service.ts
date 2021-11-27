@@ -1,5 +1,5 @@
 import cheerio from 'cheerio';
-import { Page } from '../../core.interface';
+import { Page } from '../../../../core/source/page.interface';
 import * as Raw from '../game-worlds-raw.interface';
 
 export class Processor {

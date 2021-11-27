@@ -1,7 +1,3 @@
-import { load } from 'cheerio';
-
-export type Page = ReturnType<typeof load>;
-
 export interface BaseRow {
   created_at?: Date;
   updated_at?: Date;
