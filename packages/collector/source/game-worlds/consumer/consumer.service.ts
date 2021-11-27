@@ -14,7 +14,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { GameWorld } from '../../../../core/source/world.entity';
 import { ConfigService } from '@nestjs/config';
-import { Job as JobName, Queue } from '../../config';
+import { Job as JobName, Queue } from '../../../../core/source/config';
 
 @QueueConsumer({
   name: Queue.EXECUTION_QUEUE,
