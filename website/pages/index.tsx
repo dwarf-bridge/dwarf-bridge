@@ -20,19 +20,11 @@ import {
 import { useTheme as useNextTheme } from 'next-themes'
 import React from 'react'
 import Character, { CharacterSkill, SkillTitle } from './character'
+import { RiSunFill, RiMoonFill } from 'react-icons/ri'
+
+import { SearchInput } from '../components/search_input'
 
 const ButtonComponent = () => <Button>Click me</Button>
-
-const SearchComponent = () => (
-    <Input
-        bordered
-        width="800px"
-        placeholder="build: ms min-level: 450 hunting: winter court"
-        color="default"
-        clearable
-        size="xl"
-    />
-)
 
 const Header = () => {
     const { setTheme } = useNextTheme()
@@ -85,13 +77,26 @@ const Header = () => {
                     </Navbar.Link>
                 </Navbar.Content>
                 <Navbar.Content>
-                    <Switch
-                        size={'xs'}
-                        checked={isDark}
-                        onChange={(e) =>
-                            setTheme(e.target.checked ? 'dark' : 'light')
-                        }
-                    />
+                    <Button
+                        style={{
+                            cursor: 'pointer',
+                            background: 'transparent',
+                            border: 'none',
+                            padding: 0,
+                            width: '32px',
+                            minWidth: '32px',
+                        }}
+                        onPress={() => {
+                            console.log('pressed')
+                            setTheme(isDark ? 'light' : 'dark')
+                        }}
+                    >
+                        {isDark ? (
+                            <RiSunFill size={20}></RiSunFill>
+                        ) : (
+                            <RiMoonFill size={20} color={'black'}></RiMoonFill>
+                        )}
+                    </Button>
                     <Badge content="Soon" size="xs">
                         <Avatar>Soon</Avatar>
                     </Badge>
@@ -133,7 +138,7 @@ export default function HelloPage() {
             >
                 <Grid.Container>
                     <Grid xs={12} justify="center">
-                        <SearchComponent></SearchComponent>
+                        <SearchInput></SearchInput>
                     </Grid>
                 </Grid.Container>
             </Container>
